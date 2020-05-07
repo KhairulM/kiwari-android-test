@@ -97,11 +97,11 @@ public class MainActivity extends AppCompatActivity {
                     SIGN_IN_REQUEST_CODE);
         } else {
             mUser = mFirebaseAuth.getCurrentUser();
+            displayChatMessages();
             Toast.makeText(this,
-                    "Welcome " + mUser.getDisplayName(),
+                    "Welcome " + username,
                     Toast.LENGTH_LONG)
                     .show();
-            displayChatMessages();
         }
     }
 
@@ -236,6 +236,7 @@ public class MainActivity extends AppCompatActivity {
         messages.add(chatMessage);
         mAdapter = new ChatMessageAdapter(messages, mDatabase);
         mRecycler.setAdapter(mAdapter);
+        mRecycler.scrollToPosition(messages.size()-1);
     }
 
     private void seedDatabase() {
